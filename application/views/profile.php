@@ -35,9 +35,9 @@
 					<a href="/friends">Home</a>
 					<a href="/main/logout">Logout</a>
 				</div>
-				<h3><?= $alias ?>'s Profile</h3>
-				<p>Name: <?= $name ?></p><br />
-				<p>Email Address: <?= $email ?></p>
+				<h3><?= $userProfile['0']['alias'] ?>'s Profile</h3>
+				<p>Name: <?= $userProfile['0']['name'] ?></p><br />
+				<p>Email Address: <?= $userProfile['0']['email'] ?></p>
 			</div>
 		</div>
 	</body>

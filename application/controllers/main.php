@@ -72,13 +72,14 @@ required');
 
 			$data['friends'] = $this->Friend->getFriendsByUserID($data['user']['id']);
 
-			// if($userID >= 0) {
+			if($userID >= 0) {
 				$this->load->model ('User');
-				$data['userProfile'] = $this->User->get_user_by_id($userID);
-		
-			// }
+				$info['userProfile'] = $this->User->get_user_by_id($userID);
 
-			$this->load->view('friendListView', $data);
+				$this->load->view('profile', $info);
+			}
+			else
+				$this->load->view('friendListView', $data);
 		}
 		else
 			redirect("/");
@@ -117,6 +118,7 @@ required');
 					redirect('/friends');
 				}
 			}
+			redirect('/friends');
 		}
 	}
 	// public function profile($userID) {

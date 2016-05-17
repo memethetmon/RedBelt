@@ -1,7 +1,8 @@
 <?php
 class Friend extends CI_Model {
 	public function displayNonFriendsByUserID($userID) {
-		return $this->db->query ("SELECT * FROM users u LEFT JOIN friendships f ON u.id = f.user_id WHERE u.id != $userID")->result_array();
+		return $this->db->query ("SELECT alias, users.id FROM users WHERE users.id NOT IN (SELECT friend_id FROM friendships WHERE user_id = $userID
+					AND users.id != $userID)")->result_array();
 	}
 	public function addFriend($user) {
 		date_default_timezone_set('America/Los_Angeles');
@@ -16,6 +17,6 @@ class Friend extends CI_Model {
 		return $this->db->query($query, $values)->result_array();
 	}
 	public function removeFriend($user) {
-		$this->db->query ("DELETE FROM friendships WHERE user_id={$user['userID']['id']} AND friend_id={$user['friendID']}");
+		$this->db->query("DELETE FROM friendships WHERE user_id={$user['userID']['id']} AND friend_id={$user['friendID']}");
 	}
 }
